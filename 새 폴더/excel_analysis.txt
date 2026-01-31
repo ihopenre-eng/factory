@@ -1,0 +1,142 @@
+=== 크레인 기계(2026년도).xlsx ===
+시트 목록: ['예비품', '101(H)', '102(H)', '103(H)', '104(H)', '105(H)', '105-1(H)', '106(H)', '108(H)', '109(H)', '110(H)', '111(H)', '112(H)', '113(H)', '114(H)', '115(H)', '120(H)', '121(H)', '122(H)', '123(H)', '124(H)', '125(H)', '126-1(H)', '126-2(H)', '127(H)', '128(H)', '129(H)', '130(H)', '131(H)', '140(H)', '141(H)', '142-1(H)', '142-2(H)', '143(H)', '144(H)', '145(H)', '146(H)', '150(H)', '152(H)', '350(H)', 'LLC-A(H)', 'LLC-B(H)', 'LLC-C(H)', 'HOIST(H)', 'Grab-A', 'Grab-B', 'Grab-C', 'Grab-D ', 'Grab-E', 'Port-A(H)', 'Port-B(H)', 'Port-C(H)']
+
+
+=== 시트: 예비품 ===
+컬럼 수: 3, 행 수: 108
+
+처음 20행:
+                      0                                                       1                  2
+0         GRAB 예비품 수리이력                                                     NaN                NaN
+1                  2018                                                     NaN                NaN
+2                   일 자                                                 수 리 내 용                비 고
+3   2018-07-24 00:00:00    Scrap Yard Grab 입고 ( Grab :1Set    Pump : 2Set )                    NaN
+4   2018-07-25 00:00:00                                               Pump  S-2  2018.7.25 #104 취부
+5   2018-07-27 00:00:00                                            Pump  S-3 수리                NaN
+6                   NaN       LS : 20Bar  Pump :220 Bar  Sefety Refile : 240Bar                NaN
+7                   NaN                          Close : 200Bar   Open : 120Bar                NaN
+8   2018-07-28 00:00:00                                            Pump "A" 수리                 NaN
+9                   NaN                                       1.All Valve 취외,세척                NaN
+10                  NaN                                    2.All Valve Oring 교체                NaN
+11                  NaN                                           3.Oil Tank 세척                NaN
+12                  NaN                                        4.Filter 세척후 재사용                NaN
+13                  NaN                                               5.Oil 재사용                NaN
+14                  NaN  6.LS:20Bar  Pump:220Bar  Close :200Bar  Open:120Bar 조정                NaN
+15  2018-07-31 00:00:00                                     Grab "A" (Pump "B')  2018.12.9 #103 취부
+16                  NaN                                            Pump "B" 수리                 NaN
+17                  NaN                                       1.All Valve 취외,세척                NaN
+18                  NaN                                    2.All Valve Oring 교체                NaN
+19                  NaN                                           3.Oil Tank 세척                NaN
+
+
+=== 시트: 101(H) ===
+컬럼 수: 3, 행 수: 425
+
+처음 20행:
+                             0                                                   1                        2
+0   Scrap Yard Crane#4 기계 수리이력                                                 NaN                      NaN
+1          1905-07-08 00:00:00                                                 NaN                      NaN
+2                          일 자                                             수 리 내 용                      비 고
+3          2016-01-13 00:00:00                 Spider 측 Wire Drum Crack 부 사상및 용접보강                      NaN
+4          2016-01-14 00:00:00                 Magnet 측 Wire Drum Crack 부 사상및 용접보강                      NaN
+5          2016-01-29 00:00:00                               Magnet 측 Wire Drum 취외               Danieli 수리
+6          2016-02-04 00:00:00                               Spider 측 Wire Drum 취외               Danieli 수리
+7          2016-02-17 00:00:00                          Spider 측 Wire Drum 입고 현장취부        Flange Type 으로 개조
+8                          NaN                                                 NaN  Loctite #242 도포후Bolting
+9          2016-03-01 00:00:00                             Magnet 측 Wire Drum 현장취부        Flange Type 으로 개조
+10                         NaN                                                 NaN  Loctite #242 도포후Bolting
+11         2016-03-21 00:00:00                          Wire Drum Check및 Rebolting                      NaN
+12         2016-04-04 00:00:00              주행,횡행 Wheel Brg' Cover및 Base Rebolting                      NaN
+13         2016-05-03 00:00:00                                  End Stopper Pin 교체                      NaN
+14         2016-06-15 00:00:00                                    Grab Hyd' Oil 보충                      NaN
+15         2016-07-02 00:00:00                             주행 Rail Clamp Rebolting                      NaN
+16         2016-07-11 00:00:00                                Wire Rope End Pin 수리                      NaN
+17         2016-07-19 00:00:00   Grab 측 Wire Rope 교환 Z::ø24 x 65m  S::ø24 x 65m                         NaN
+18         2016-07-19 00:00:00                           Limit Support 수리(위치변경)                         NaN
+19         2016-07-25 00:00:00                         주행,횡행 Reducer 청음봉 Checking                       NaN
+
+
+=== 시트: 102(H) ===
+컬럼 수: 3, 행 수: 387
+
+처음 20행:
+                             0                                                   1                        2
+0   Scrap Yard Crane #3기계 수리이력                                                 NaN                      NaN
+1          1905-07-08 00:00:00                                                 NaN                      NaN
+2                          일 자                                             수 리 내 용                      비 고
+3          2016-01-28 00:00:00                               Magnet 측 Wire Drum 취외             Danieli 하자수리
+4          2016-02-03 00:00:00                               Spider 측 Wire Drum 취외             Danieli 하자수리
+5          2016-02-18 00:00:00                          Spider 측 Wire Drum 입고 현장취부         Flange Type 으로개조
+6                          NaN                                                 NaN                      NaN
+7          2016-02-29 00:00:00                               Magnet 측 Wire Drum 취부  Loctite #242 도포후Bolting
+8          2016-03-21 00:00:00                          Wire Drum Check및 Rebolting                      NaN
+9          2016-04-04 00:00:00              주행,횡행 Wheel Brg' Cover및 Base Rebolting                      NaN
+10         2016-05-03 00:00:00                                  End Stopper Pin 교체                      NaN
+11         2016-05-13 00:00:00                    Grab Hyd" Cylinder Hose Leak부 수리                      NaN
+12         2016-05-13 00:00:00                 Wire Drum Stopper Base Rebolting 작업                      NaN
+13         2016-07-02 00:00:00                             주행 Rail Clamp Rebolting                      NaN
+14         2016-07-20 00:00:00                                     Wire Rope Check                      NaN
+15         2016-07-25 00:00:00                         주행,횡행 Reducer 청음봉 Checking                       NaN
+16         2016-08-02 00:00:00                           Hoist Coupling Rebolting                       NaN
+17         2016-08-08 00:00:00   #4 Grab Cyl' Oil Leak 부수리(O-Ring 훼손) :O-Ring 신품교체                      NaN
+18         2016-08-08 00:00:00                     주행.횡행 Wheel 고정 Block Rebolting                       NaN
+19         2016-08-19 00:00:00                             Grab Cyl' Oil Leak 수리                        NaN
+
+
+
+=== Povim 크레인 전기(26년1월4주차).xlsx ===
+시트 목록: ['HOIST', '101', '102', '103', 'Sheet9', '104', '105', '105 (LF)', '108', '109', '110', '111', '112', '113', '114', '115', '120', '121', '122', '123', 'Sheet2', 'Sheet3', 'Sheet4', '124', '125', '126-1', '126-2', '127', '128', '129', '130', '131', '140', '141', '142-1', '142-2', '143', '144', '145', '146', '150', '152', '350(127UNDER)', 'LLC-A', 'LLC-B', 'LLC-C', 'Grab-D', 'Sheet7', 'Sheet8', 'Grab-E ', '항만창고-A', '항만창고-B', '항만창고-C', 'Sheet1', 'Sheet5', 'Sheet6']
+
+
+=== 시트: HOIST ===
+컬럼 수: 4, 행 수: 242
+
+처음 20행:
+                             0                                                                     1        2    3
+0   JIB CRANE 및 HOIST  전기 수리이력                                                                   NaN      NaN  NaN
+1          1905-07-12 00:00:00                                                                   NaN      NaN  NaN
+2                          일 자                                                                  명  칭  수 리 내 용  비 고
+3          2020-07-15 00:00:00                                              314 Jib Hoist Motor 교체작업      NaN  NaN
+4          2020-07-21 00:00:00                                                    203 Crane 리모컨 수리작업      NaN  NaN
+5                        7월23일                                                    208 Crane 리모컨 수리작업      NaN  NaN
+6                        7월31일                                     305 Crane Main Hoist trolley 수리작업      NaN  NaN
+7          2020-08-10 00:00:00                                                    218 HOIST 리모컨 교체작업      NaN  NaN
+8          2020-08-19 00:00:00                                                314 Jib Hoist 리모컨 수리작업      NaN  NaN
+9          2020-08-19 00:00:00                                                202 Jib Hoist 리모컨 수리작업      NaN  NaN
+10                       8월24일                                               203 Jib Hoist Fuse 교체작업      NaN  NaN
+11                       8월27일                   C-81 수처리 Scale Pit Jib Crane  Trolley Cable 점검작업         NaN  NaN
+12         2020-08-31 00:00:00                                                314 Jib Hoist 리모컨 수리작업      NaN  NaN
+13         2020-09-09 00:00:00                                    203 Jib Hoist Motor Contactor 점검작업      NaN  NaN
+14         2020-09-10 00:00:00                                     204 Jib Hoist Motor Brake 취외 점검작업      NaN  NaN
+15         2020-09-11 00:00:00  220 Section Roll Shop Jib Crane Cable Wire 수리 및 원격 Cable Socket 수리작업      NaN  NaN
+16         2020-09-22 00:00:00                                         202 Jib Hoist 퓨즈.접촉기.릴레이 수리작업      NaN  NaN
+17                       10월6일                                        203 Jib Hoist Power Cable 수리작업      NaN  NaN
+18                      10월19일                                     314 Jib Hoist Panel 청소 및 리모컨 수리작업      NaN  NaN
+19                      10월19일                                         201 Jib Hoist 퓨즈.접촉기.릴레이 수리작업      NaN  NaN
+
+
+=== 시트: 101 ===
+컬럼 수: 3, 행 수: 270
+
+처음 20행:
+                               0                                                                 1    2
+0   Scrap Yard #4 Crane  전기 수리이력                                                               NaN  NaN
+1            1905-07-12 00:00:00                                                               NaN  NaN
+2                            일 자                                                           수 리 내 용  비 고
+3            2020-07-06 00:00:00                  Scrap Yard #4 Crane Grab Power Cable Tension조정작업  NaN
+4            2020-07-23 00:00:00      Scrap Yard #4 Crane Grab Power Cable Tension조정 및 Wire 리볼팅 작업  NaN
+5            2020-07-27 00:00:00                Scrap Yard #4 Crane Trolley Limit Switch 점검 및 교체작업  NaN
+6            2020-07-28 00:00:00             Scrap Yard #4 Crane Magnet Inverter 고장으로 취외 .외주 수리 보냄  NaN
+7                           8월3일                                    Scrap Yard #4 Crane panel 청소작업  NaN
+8                           8월5일    Scrap Yard #4 Crane Wheel Cable Guide Trolley Bearing 4Set교체작업  NaN
+9            2020-09-07 00:00:00                      Scrap Yard #4 Crane Main Hoist Inverter 교체작업  NaN
+10           2020-09-09 00:00:00                      Scrap Yard #4 Crane Main Hoist Inverter 점검작업  NaN
+11           2020-09-14 00:00:00    Scrap Yard #4 Crane Main Power Guide Wire Rope점검 및 Rebolting작업  NaN
+12           2020-09-16 00:00:00                                 Scrap Yard #4 Crane Grab 접촉기 교체작업  NaN
+13           2020-09-17 00:00:00  Scrap Yard #4 Crane Main Power,Trolley Wheel Guide ,Bus Bar 점검작업  NaN
+14           2020-09-18 00:00:00                   Scrap Yard #4 Crane  Inverter.접촉기.계전기 점검 및 청소작업  NaN
+15           2020-09-23 00:00:00                         Scrap Yard #4 Crane Cam Limit 조정작업(운전반요청)  NaN
+16           2020-09-24 00:00:00           Scrap Yard #4 Crane Cable Trolley Wire Rope Tension조정작업  NaN
+17           2020-09-25 00:00:00                                    Scrap Yard #4 Crane Brake 수리작업  NaN
+18           2020-09-28 00:00:00                   Scrap Yard #4 Crane  Inverter.접촉기.계전기 점검 및 청소작업  NaN
+19           2020-09-29 00:00:00  Scrap Yard #4 Crane Main Power,Trolley Wheel Guide ,Bus Bar 점검작업  NaN

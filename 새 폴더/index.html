@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>크레인 설비 이력 관리 시스템</title>
+    <meta name="description" content="기계안전관리자를 위한 크레인 설비별 이력 관리 시스템">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="logo"><i class="fas fa-cog"></i><span>크레인 이력관리</span></div>
+        </div>
+        <nav class="sidebar-nav">
+            <a href="#" class="nav-item active" data-page="dashboard"><i
+                    class="fas fa-chart-pie"></i><span>대시보드</span></a>
+            <a href="#" class="nav-item" data-page="equipment"><i class="fas fa-industry"></i><span>설비 목록</span></a>
+            <a href="#" class="nav-item" data-page="history"><i class="fas fa-history"></i><span>이력 관리</span></a>
+            <a href="#" class="nav-item" data-page="parts"><i class="fas fa-cogs"></i><span>부품 통계</span></a>
+            <a href="#" class="nav-item" data-page="schedule"><i class="fas fa-calendar-check"></i><span>점검
+                    일정</span></a>
+            <a href="#" class="nav-item" data-page="reports"><i class="fas fa-file-alt"></i><span>보고서</span></a>
+        </nav>
+        <div class="sidebar-footer">
+            <div class="user-info"><i class="fas fa-user-shield"></i><span>기계안전관리자</span></div>
+        </div>
+    </aside>
+
+    <main class="main-content">
+        <header class="header">
+            <button class="menu-toggle" id="menuToggle"><i class="fas fa-bars"></i></button>
+            <div class="header-title">
+                <h1 id="pageTitle">대시보드</h1>
+            </div>
+            <div class="header-actions">
+                <div class="search-box"><i class="fas fa-search"></i><input type="text" placeholder="설비 검색..."
+                        id="globalSearch"></div>
+                <button class="notification-btn" id="notificationBtn"><i class="fas fa-bell"></i><span
+                        class="notification-badge" id="notificationBadge">0</span></button>
+            </div>
+        </header>
+
+        <section class="page active" id="dashboardPage">
+            <div class="dashboard-stats">
+                <div class="stat-card">
+                    <div class="stat-icon blue"><i class="fas fa-industry"></i></div>
+                    <div class="stat-info">
+                        <h3 id="totalEquipment">0</h3>
+                        <p>전체 설비</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon green"><i class="fas fa-check-circle"></i></div>
+                    <div class="stat-info">
+                        <h3 id="normalEquipment">0</h3>
+                        <p>정상 가동</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon orange"><i class="fas fa-tools"></i></div>
+                    <div class="stat-info">
+                        <h3 id="maintenanceEquipment">0</h3>
+                        <p>점검 중</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon red"><i class="fas fa-exclamation-triangle"></i></div>
+                    <div class="stat-info">
+                        <h3 id="issueEquipment">0</h3>
+                        <p>이상 발생</p>
+                    </div>
+                </div>
+            </div>
+            <div class="dashboard-grid">
+                <div class="card upcoming-inspections">
+                    <div class="card-header">
+                        <h2><i class="fas fa-calendar-alt"></i> 예정된 점검</h2>
+                    </div>
+                    <div class="card-body">
+                        <ul class="inspection-list" id="upcomingInspections"></ul>
+                    </div>
+                </div>
+                <div class="card recent-history">
+                    <div class="card-header">
+                        <h2><i class="fas fa-history"></i> 최근 이력</h2>
+                    </div>
+                    <div class="card-body">
+                        <ul class="history-list" id="recentHistory"></ul>
+                    </div>
+                </div>
+                <div class="card equipment-overview">
+                    <div class="card-header">
+                        <h2><i class="fas fa-chart-bar"></i> 설비 현황</h2>
+                    </div>
+                    <div class="card-body">
+                        <div class="chart-container" id="statusChart"></div>
+                    </div>
+                </div>
+                <div class="card alerts-card">
+                    <div class="card-header">
+                        <h2><i class="fas fa-bell"></i> 알림</h2>
+                    </div>
+                    <div class="card-body">
+                        <ul class="alerts-list" id="alertsList"></ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="page" id="equipmentPage">
+            <div class="page-actions">
+                <button class="btn btn-primary" id="addEquipmentBtn"><i class="fas fa-plus"></i> 설비 추가</button>
+                <div class="filter-group">
+                    <select id="equipmentTypeFilter">
+                        <option value="">전체 유형</option>
+                        <option value="천장크레인">천장크레인</option>
+                        <option value="갠트리크레인">갠트리크레인</option>
+                        <option value="지브크레인">지브크레인</option>
+                        <option value="호이스트">호이스트</option>
+                        <option value="기타">기타</option>
+                    </select>
+                    <select id="equipmentStatusFilter">
+                        <option value="">전체 상태</option>
+                        <option value="정상">정상</option>
+                        <option value="점검중">점검중</option>
+                        <option value="수리필요">수리필요</option>
+                        <option value="가동중지">가동중지</option>
+                    </select>
+                </div>
+            </div>
+            <div class="equipment-grid" id="equipmentGrid"></div>
+        </section>
+
+        <section class="page" id="historyPage">
+            <div class="page-actions">
+                <button class="btn btn-primary" id="addHistoryBtn"><i class="fas fa-plus"></i> 이력 추가</button>
+                <div class="filter-group">
+                    <select id="historyEquipmentFilter">
+                        <option value="">전체 설비</option>
+                    </select>
+                    <select id="historyTypeFilter">
+                        <option value="">전체 유형</option>
+                        <option value="정기점검">정기점검</option>
+                        <option value="자체점검">자체점검</option>
+                        <option value="수리">수리</option>
+                        <option value="부품교체">부품교체</option>
+                        <option value="안전검사">안전검사</option>
+                        <option value="기타">기타</option>
+                    </select>
+                    <input type="month" id="historyMonthFilter">
+                </div>
+            </div>
+            <div class="table-container">
+                <table class="data-table" id="historyTable">
+                    <thead>
+                        <tr>
+                            <th>날짜</th>
+                            <th>설비명</th>
+                            <th>유형</th>
+                            <th>담당자</th>
+                            <th>내용</th>
+                            <th>결과</th>
+                            <th>액션</th>
+                        </tr>
+                    </thead>
+                    <tbody id="historyTableBody"></tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- 부품 통계 페이지 -->
+        <section class="page" id="partsPage">
+            <div class="parts-stats-summary">
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: linear-gradient(135deg, #8b5cf6, #6d28d9);">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3 id="totalPartsCount">0</h3>
+                        <p>총 부품 교체 건수</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: linear-gradient(135deg, #f59e0b, #d97706);">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3 id="topPartName">-</h3>
+                        <p>가장 많이 교체된 부품</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="parts-grid">
+                <div class="card parts-chart-card">
+                    <div class="card-header">
+                        <h2><i class="fas fa-chart-bar"></i> 부품별 교체 현황 (상위 15개)</h2>
+                    </div>
+                    <div class="card-body">
+                        <div class="horizontal-chart" id="partsChart"></div>
+                    </div>
+                </div>
+
+                <div class="card parts-table-card">
+                    <div class="card-header">
+                        <h2><i class="fas fa-list"></i> 부품별 상세 통계</h2>
+                        <div class="filter-group">
+                            <select id="partsEquipmentFilter">
+                                <option value="">전체 설비</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <table class="data-table" id="partsTable">
+                            <thead>
+                                <tr>
+                                    <th>순위</th>
+                                    <th>부품명</th>
+                                    <th>교체 횟수</th>
+                                    <th>비율</th>
+                                    <th>최근 교체일</th>
+                                </tr>
+                            </thead>
+                            <tbody id="partsTableBody"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card parts-history-card">
+                <div class="card-header">
+                    <h2><i class="fas fa-history"></i> 부품 교체 이력</h2>
+                    <div class="filter-group">
+                        <select id="partsTypeFilter">
+                            <option value="">전체 부품</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>날짜</th>
+                                <th>설비명</th>
+                                <th>부품</th>
+                                <th>작업 내용</th>
+                            </tr>
+                        </thead>
+                        <tbody id="partsHistoryTableBody"></tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <section class="page" id="schedulePage">
+            <div class="page-actions"><button class="btn btn-primary" id="addScheduleBtn"><i class="fas fa-plus"></i> 일정
+                    추가</button></div>
+            <div class="schedule-container">
+                <div class="calendar-header">
+                    <button class="btn btn-icon" id="prevMonth"><i class="fas fa-chevron-left"></i></button>
+                    <h2 id="currentMonth">2024년 1월</h2>
+                    <button class="btn btn-icon" id="nextMonth"><i class="fas fa-chevron-right"></i></button>
+                </div>
+                <div class="calendar-grid" id="calendarGrid"></div>
+            </div>
+        </section>
+
+        <section class="page" id="reportsPage">
+            <div class="reports-container">
+                <div class="report-card">
+                    <div class="report-icon" style="background: linear-gradient(135deg, #22c55e, #15803d);"><i
+                            class="fas fa-sync-alt"></i></div>
+                    <h3>엑셀 데이터 새로고침</h3>
+                    <p>엑셀 파일에서 데이터를 다시 불러옵니다.</p>
+                    <div class="report-options"><button class="btn btn-primary" id="reloadExcelData"><i
+                                class="fas fa-sync-alt"></i> 새로고침</button></div>
+                </div>
+                <div class="report-card">
+                    <div class="report-icon"><i class="fas fa-file-pdf"></i></div>
+                    <h3>월간 점검 보고서</h3>
+                    <p>선택한 월의 전체 점검 내역을 생성합니다.</p>
+                    <div class="report-options"><input type="month" id="monthlyReportMonth"><button
+                            class="btn btn-primary" id="generateMonthlyReport">생성</button></div>
+                </div>
+                <div class="report-card">
+                    <div class="report-icon"><i class="fas fa-file-excel"></i></div>
+                    <h3>설비별 이력 보고서</h3>
+                    <p>특정 설비의 전체 이력을 생성합니다.</p>
+                    <div class="report-options"><select id="equipmentReportSelect">
+                            <option value="">설비 선택</option>
+                        </select><button class="btn btn-primary" id="generateEquipmentReport">생성</button></div>
+                </div>
+                <div class="report-card">
+                    <div class="report-icon" style="background: linear-gradient(135deg, #8b5cf6, #6d28d9);"><i
+                            class="fas fa-table"></i></div>
+                    <h3>연간 보수 현황</h3>
+                    <p>설비별 월별 보수 횟수를 한눈에 확인합니다.</p>
+                    <div class="report-options"><select id="statsYearSelect"></select><button class="btn btn-primary"
+                            id="showYearlyStatsFn">보기</button></div>
+                </div>
+                <div class="report-card">
+                    <div class="report-icon"><i class="fas fa-file-download"></i></div>
+                    <h3>데이터 내보내기</h3>
+                    <p>전체 데이터를 JSON으로 내보냅니다.</p>
+                    <div class="report-options"><button class="btn btn-primary" id="exportData">내보내기</button><label
+                            class="btn btn-secondary">가져오기<input type="file" id="importData" accept=".json"
+                                hidden></label></div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div class="modal" id="statsModal">
+        <div class="modal-content modal-large" style="max-width: 1200px;">
+            <div class="modal-header">
+                <h2 id="statsModalTitle">연간 설비별 보수 현황</h2>
+                <button class="modal-close" id="closeStatsModal">&times;</button>
+            </div>
+            <div class="modal-body" style="padding: 0;">
+                <div class="table-container" style="max-height: 70vh; overflow-y: auto;">
+                    <table class="data-table" id="yearlyStatsTable" style="margin: 0;">
+                        <thead>
+                            <tr>
+                                <th style="position:sticky; top:0; z-index:10; background:var(--dark-card);">설비명</th>
+                                <th style="position:sticky; top:0; z-index:10; background:var(--dark-card);">1월</th>
+                                <th style="position:sticky; top:0; z-index:10; background:var(--dark-card);">2월</th>
+                                <th style="position:sticky; top:0; z-index:10; background:var(--dark-card);">3월</th>
+                                <th style="position:sticky; top:0; z-index:10; background:var(--dark-card);">4월</th>
+                                <th style="position:sticky; top:0; z-index:10; background:var(--dark-card);">5월</th>
+                                <th style="position:sticky; top:0; z-index:10; background:var(--dark-card);">6월</th>
+                                <th style="position:sticky; top:0; z-index:10; background:var(--dark-card);">7월</th>
+                                <th style="position:sticky; top:0; z-index:10; background:var(--dark-card);">8월</th>
+                                <th style="position:sticky; top:0; z-index:10; background:var(--dark-card);">9월</th>
+                                <th style="position:sticky; top:0; z-index:10; background:var(--dark-card);">10월</th>
+                                <th style="position:sticky; top:0; z-index:10; background:var(--dark-card);">11월</th>
+                                <th style="position:sticky; top:0; z-index:10; background:var(--dark-card);">12월</th>
+                                <th style="position:sticky; top:0; z-index:10; background:var(--dark-card);">합계</th>
+                            </tr>
+                        </thead>
+                        <tbody id="yearlyStatsTableBody"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="equipmentModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="equipmentModalTitle">설비 추가</h2><button class="modal-close"
+                    id="closeEquipmentModal">&times;</button>
+            </div>
+            <form id="equipmentForm">
+                <input type="hidden" id="equipmentId">
+                <div class="form-grid">
+                    <div class="form-group"><label for="equipmentName">설비명 *</label><input type="text"
+                            id="equipmentName" required></div>
+                    <div class="form-group"><label for="equipmentCode">관리번호 *</label><input type="text"
+                            id="equipmentCode" required></div>
+                    <div class="form-group"><label for="equipmentType">설비 유형 *</label><select id="equipmentType"
+                            required>
+                            <option value="">선택</option>
+                            <option value="천장크레인">천장크레인</option>
+                            <option value="갠트리크레인">갠트리크레인</option>
+                            <option value="지브크레인">지브크레인</option>
+                            <option value="호이스트">호이스트</option>
+                            <option value="기타">기타</option>
+                        </select></div>
+                    <div class="form-group"><label for="equipmentCapacity">정격하중(톤)</label><input type="number"
+                            id="equipmentCapacity" step="0.1"></div>
+                    <div class="form-group"><label for="equipmentLocation">설치위치 *</label><input type="text"
+                            id="equipmentLocation" required></div>
+                    <div class="form-group"><label for="equipmentManufacturer">제조사</label><input type="text"
+                            id="equipmentManufacturer"></div>
+                    <div class="form-group"><label for="equipmentInstallDate">설치일</label><input type="date"
+                            id="equipmentInstallDate"></div>
+                    <div class="form-group"><label for="equipmentStatus">상태 *</label><select id="equipmentStatus"
+                            required>
+                            <option value="정상">정상</option>
+                            <option value="점검중">점검중</option>
+                            <option value="수리필요">수리필요</option>
+                            <option value="가동중지">가동중지</option>
+                        </select></div>
+                    <div class="form-group"><label for="nextInspectionDate">다음점검일</label><input type="date"
+                            id="nextInspectionDate"></div>
+                    <div class="form-group full-width"><label for="equipmentNotes">비고</label><textarea
+                            id="equipmentNotes" rows="2"></textarea></div>
+                </div>
+                <div class="form-actions"><button type="button" class="btn btn-secondary"
+                        id="cancelEquipment">취소</button><button type="submit" class="btn btn-primary">저장</button></div>
+            </form>
+        </div>
+    </div>
+
+    <div class="modal" id="historyModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="historyModalTitle">이력 추가</h2><button class="modal-close" id="closeHistoryModal">&times;</button>
+            </div>
+            <form id="historyForm">
+                <input type="hidden" id="historyId">
+                <div class="form-grid">
+                    <div class="form-group"><label for="historyEquipment">설비 *</label><select id="historyEquipment"
+                            required>
+                            <option value="">선택</option>
+                        </select></div>
+                    <div class="form-group"><label for="historyDate">날짜 *</label><input type="date" id="historyDate"
+                            required></div>
+                    <div class="form-group"><label for="historyType">유형 *</label><select id="historyType" required>
+                            <option value="">선택</option>
+                            <option value="정기점검">정기점검</option>
+                            <option value="자체점검">자체점검</option>
+                            <option value="수리">수리</option>
+                            <option value="부품교체">부품교체</option>
+                            <option value="안전검사">안전검사</option>
+                            <option value="기타">기타</option>
+                        </select></div>
+                    <div class="form-group"><label for="historyTechnician">담당자 *</label><input type="text"
+                            id="historyTechnician" required></div>
+                    <div class="form-group"><label for="historyResult">결과 *</label><select id="historyResult" required>
+                            <option value="">선택</option>
+                            <option value="양호">양호</option>
+                            <option value="조건부합격">조건부합격</option>
+                            <option value="수리필요">수리필요</option>
+                            <option value="불합격">불합격</option>
+                        </select></div>
+                    <div class="form-group"><label for="historyCost">비용(원)</label><input type="number" id="historyCost">
+                    </div>
+                    <div class="form-group full-width"><label for="historyDescription">상세내용 *</label><textarea
+                            id="historyDescription" rows="3" required></textarea></div>
+                </div>
+                <div class="form-actions"><button type="button" class="btn btn-secondary"
+                        id="cancelHistory">취소</button><button type="submit" class="btn btn-primary">저장</button></div>
+            </form>
+        </div>
+    </div>
+
+    <div class="modal" id="scheduleModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>점검 일정 추가</h2><button class="modal-close" id="closeScheduleModal">&times;</button>
+            </div>
+            <form id="scheduleForm">
+                <input type="hidden" id="scheduleId">
+                <div class="form-grid">
+                    <div class="form-group"><label for="scheduleEquipment">설비 *</label><select id="scheduleEquipment"
+                            required>
+                            <option value="">선택</option>
+                        </select></div>
+                    <div class="form-group"><label for="scheduleDate">예정일 *</label><input type="date" id="scheduleDate"
+                            required></div>
+                    <div class="form-group"><label for="scheduleType">점검유형 *</label><select id="scheduleType" required>
+                            <option value="">선택</option>
+                            <option value="정기점검">정기점검</option>
+                            <option value="자체점검">자체점검</option>
+                            <option value="안전검사">안전검사</option>
+                            <option value="기타">기타</option>
+                        </select></div>
+                    <div class="form-group"><label for="scheduleTechnician">담당자</label><input type="text"
+                            id="scheduleTechnician"></div>
+                    <div class="form-group full-width"><label for="scheduleNotes">메모</label><textarea id="scheduleNotes"
+                            rows="2"></textarea></div>
+                </div>
+                <div class="form-actions"><button type="button" class="btn btn-secondary"
+                        id="cancelSchedule">취소</button><button type="submit" class="btn btn-primary">저장</button></div>
+            </form>
+        </div>
+    </div>
+
+    <div class="modal" id="equipmentDetailModal">
+        <div class="modal-content modal-large">
+            <div class="modal-header">
+                <h2 id="equipmentDetailTitle">설비 상세 정보</h2><button class="modal-close"
+                    id="closeEquipmentDetailModal">&times;</button>
+            </div>
+            <div class="modal-body" id="equipmentDetailContent"></div>
+        </div>
+    </div>
+
+    <div class="notification-panel" id="notificationPanel">
+        <div class="notification-header">
+            <h3>알림</h3><button class="btn btn-sm" id="markAllRead">모두 읽음</button>
+        </div>
+        <div class="notification-list" id="notificationList"></div>
+    </div>
+
+    <div class="toast-container" id="toastContainer"></div>
+    <script src="app.js"></script>
+</body>
+
+</html>
